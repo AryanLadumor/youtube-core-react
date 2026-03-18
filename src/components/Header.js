@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import {toogleSidebar} from "../utils/appSlice"
+import { DEFAULT_USER_ICON, HAMBURGER_MENU_ICON, SEARCH_ICON, YOUTUBE_LOGO } from "../utils/constants";
 
 const Header = () => {
 
@@ -15,7 +16,7 @@ const Header = () => {
       <div className="flex col-span-1 items-center">
         <img
           className="h-8  hover:scale-125 transition duration-75 cursor-pointer "
-          src="https://tse3.mm.bing.net/th/id/OIP.F7reOP_-iZbvvQMHFXwECwHaHa?pid=Api&P=0&h=180"
+          src={HAMBURGER_MENU_ICON}
           alt=""
           onClick={toggleMenuHandler}
         />
@@ -23,7 +24,7 @@ const Header = () => {
         <a href="/">
         <img
           className="h-11 mx-3"
-          src="https://tse1.mm.bing.net/th/id/OIP.sCtdNjphAin-gugu0MNptAHaEK?pid=Api&P=0&h=180"
+          src={YOUTUBE_LOGO}
           alt=""
           />
           </a>
@@ -36,7 +37,7 @@ const Header = () => {
         />
         <button className="border  h-9 w-12  border-slate-900 rounded-r-full">
           <img
-            src="https://tse2.mm.bing.net/th/id/OIP.vyhkMafwzVBCCSsgGJfI4wHaHa?pid=Api&P=0&h=180"
+            src={SEARCH_ICON}
             className="w-8 p-1 hover:scale-125 ml-2  transition duration-100"
             alt=""
           />
@@ -45,7 +46,7 @@ const Header = () => {
       <div className="flex col-span-1 justify-end">
         <img
           className="h-8 "
-          src="https://tse2.mm.bing.net/th/id/OIP.mb-TeazydHy54flygpdclwHaHa?pid=Api&P=0&h=180"
+          src={DEFAULT_USER_ICON}  
           alt=""
         />
       </div>
