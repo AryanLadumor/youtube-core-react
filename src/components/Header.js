@@ -1,19 +1,32 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import {toogleSidebar} from "../utils/appSlice"
 
 const Header = () => {
+
+    const dispatch = useDispatch();
+
+    const toggleMenuHandler = ()=>{
+        dispatch(toogleSidebar()) 
+    } 
+
   return (
     <div className="grid grid-flow-col p-1 m-2 shadow-sm">
       <div className="flex col-span-1 items-center">
         <img
-          className="h-8  hover:scale-125 transition duration-75 "
+          className="h-8  hover:scale-125 transition duration-75 cursor-pointer "
           src="https://tse3.mm.bing.net/th/id/OIP.F7reOP_-iZbvvQMHFXwECwHaHa?pid=Api&P=0&h=180"
           alt=""
+          onClick={toggleMenuHandler}
         />
+
+        <a href="/">
         <img
           className="h-11 mx-3"
           src="https://tse1.mm.bing.net/th/id/OIP.sCtdNjphAin-gugu0MNptAHaEK?pid=Api&P=0&h=180"
           alt=""
-        />
+          />
+          </a>
       </div>
       <div className="flex justify-center items-center  text-center col-span-10">
         <input
