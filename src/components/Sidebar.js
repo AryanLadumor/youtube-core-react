@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 import { useSelector } from "react-redux";
 import {
   HOME_ICON,
@@ -13,29 +14,16 @@ const Sidebar = () => {
   return (
     <div className="h-full">
       {isMenuopen ? ( // If true only Show The Four [home,short,video,music] Icon else Show Whole SideBar
-        <ul className="flex w-14 h-full my-2 p-3 flex-col items-center ml-1 shadow-md">
-          <li className="my-3">
-            <img className="w-7" src={HOME_ICON} alt="" />
-          </li>
-          <li className="my-3">
-            <img className="w-10" src={SHORT_ICON} alt="" />
-          </li>
-          <li className="my-3">
-            <img className="w-8" src={VIDEO_ICON} alt="" />
-          </li>
-          <li className="my-3">
-            <img className="w-7" src={MUSIC_ICON} alt="" />
-          </li>
-        </ul>
-      ) : (
         <div className="p-3 w-40 shadow-md h-full">
           <div className="my-1">
             <ul className=" my-2 flex flex-col items-start justify-center ">
               <li className="flex my-1 w-full">
-                <span className="w-3/12">
-                  <img className="w-7" src={HOME_ICON} alt="" />
-                </span>
-                <span className="ml-1 w-5/12 text-center">Home</span>
+                <Link className="flex my-1 w-full">
+                  <span className="w-3/12">
+                    <img className="w-7" src={HOME_ICON} alt="" />
+                  </span>
+                  <span className="ml-1 w-5/12 text-center">Home</span>
+                </Link>
               </li>
               <li className="flex my-1  w-full ">
                 <span className="w-3/12">
@@ -78,6 +66,23 @@ const Sidebar = () => {
             </ul>
           </div>
         </div>
+      ) : (
+        <ul className="flex w-14 h-full my-2 p-3 flex-col items-center ml-1 shadow-md">
+          <li className="my-3">
+            <Link to="/">
+              <img className="w-7" src={HOME_ICON} alt="" />
+            </Link>
+          </li>
+          <li className="my-3">
+            <img className="w-10" src={SHORT_ICON} alt="" />
+          </li>
+          <li className="my-3">
+            <img className="w-8" src={VIDEO_ICON} alt="" />
+          </li>
+          <li className="my-3">
+            <img className="w-7" src={MUSIC_ICON} alt="" />
+          </li>
+        </ul>
       )}
     </div>
   );
