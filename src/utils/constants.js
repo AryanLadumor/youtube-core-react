@@ -12,4 +12,4 @@ export const VIDEO_ICON = "https://tse3.mm.bing.net/th/id/OIP.sK4WJBFCR_U7VRx0mU
 export const MUSIC_ICON = "https://tse1.mm.bing.net/th/id/OIP.zAz5Alw6ViaMCeqn5QNO0gHaHa?pid=Api&P=0&h=180"
 
 //Youtube Vidios API
-const MY_VIDEOS_API = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&forMine=true&maxResults=25&q=fun&type=video&key=[${process.env.REACT_APP_GOOGLE_API_KEY}] HTTP/1.1`
+export const MY_VIDEOS_API = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=IN&maxResults=50&key=${process.env.REACT_APP_YOUTUBE_API_KEY} `

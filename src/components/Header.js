@@ -12,7 +12,7 @@ const Header = () => {
     } 
 
   return (
-    <div className="grid grid-flow-col p-1 m-2 shadow-sm">
+    <div className="grid grid-flow-col p-1 m-2 ">
       <div className="flex col-span-1 items-center">
         <img
           className="h-8  hover:scale-125 transition duration-75 cursor-pointer "

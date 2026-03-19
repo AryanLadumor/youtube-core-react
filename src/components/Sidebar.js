@@ -15,20 +15,20 @@ const Sidebar = () => {
       {isMenuopen ? ( // If true only Show The Four [home,short,video,music] Icon else Show Whole SideBar
         <ul className="flex w-14 h-full my-2 p-3 flex-col items-center ml-1 shadow-md">
           <li className="my-3">
-            <img className="w-5" src={HOME_ICON} alt="" />
+            <img className="w-7" src={HOME_ICON} alt="" />
           </li>
           <li className="my-3">
-            <img className="w-7" src={SHORT_ICON} alt="" />
+            <img className="w-10" src={SHORT_ICON} alt="" />
           </li>
           <li className="my-3">
-            <img className="w-6" src={VIDEO_ICON} alt="" />
+            <img className="w-8" src={VIDEO_ICON} alt="" />
           </li>
           <li className="my-3">
-            <img className="w-6" src={MUSIC_ICON} alt="" />
+            <img className="w-7" src={MUSIC_ICON} alt="" />
           </li>
         </ul>
       ) : (
-        <div className="p-3 w-40 shadow-md">
+        <div className="p-3 w-40 shadow-md h-full">
           <div className="my-1">
             <ul className=" my-2 flex flex-col items-start justify-center ">
               <li className="flex my-1 w-full">

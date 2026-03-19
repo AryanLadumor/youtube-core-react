@@ -5,10 +5,10 @@ const buttonList = ["All" , "Comedy clubs" , "KSI" , "Gaming" , "Blind Dates" , 
 
 const ButtonList = () => {
   return (
-    <div className="flex ">
+    <div className="flex  ">
      {
       buttonList.map((buttonText)=>{
-        return <Button name={buttonText} />
+        return <Button key={buttonText}  name={buttonText} />
       })
      }
     </div>
