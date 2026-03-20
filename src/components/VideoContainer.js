@@ -1,6 +1,6 @@
 import React ,{useEffect, useState} from 'react'
 import { MY_VIDEOS_API } from '../utils/constants'
-import VideoCard from './VideoCard'
+import VideoCard ,{HOCBorderedVideoCard} from './VideoCard'
 import { Link } from 'react-router-dom'
 const VideoContainer = () => {
 
@@ -15,7 +15,7 @@ const VideoContainer = () => {
   const getVideos = async ()=>{
     const data = await fetch(MY_VIDEOS_API)
     const jsonData = await data.json()
-    console.log(jsonData.items)
+    // console.log(jsonData.items)
     setVideos(jsonData?.items)
   }
 
@@ -24,16 +24,18 @@ const VideoContainer = () => {
     return <div>Loding...</div>
   }
 
-  return (
-    <div className='grid grid-cols-4 ' >
+  const BorderedVideoCard = HOCBorderedVideoCard(VideoCard)
 
+  return (
+    <div className='grid grid-cols-3 ' >
       {videos.map((video,index)=>{
         return (
           <Link key={video.id} to={"/watch?v=" + video.id }>
             <VideoCard info={videos[index]}/>
           </Link>
       )
-      })}
+    })}
+    { videos[0] &&  <BorderedVideoCard info={videos[0]}/>}
     </div>
   )
 }

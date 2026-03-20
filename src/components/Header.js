@@ -1,11 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {toogleSidebar} from "../utils/appSlice"
-import { DEFAULT_USER_ICON, HAMBURGER_MENU_ICON, SEARCH_ICON, YOUTUBE_LOGO } from "../utils/constants";
+import { DEFAULT_USER_ICON, HAMBURGER_MENU_ICON, SEARCH_ICON, YOUTUBE_LOGO, YOUTUBE_SEARCH_API } from "../utils/constants";
 
 const Header = () => {
 
     const dispatch = useDispatch();
+
+    const [searchSuggestion , setSearchSuggestion] = useState([]) //2
+    const [showSugessionOnFocus , setShowSugessionOnFocus] = useState(false) //3
+    const [searchQuery , setSearchQuery] = useState("") //1
+    //this effect will work every time the search state changes to suggestion every time 
+    useEffect(()=>{
+      //after every key press make an api call in 200ms
+        const timer = setTimeout(()=> getSearchSuggetion() , 200)
+
+      //if the diff bet 2 api call is <200 decline the api call 
+      //on unmouting clear the timer
+      return ()=>{
+        clearTimeout(timer)
+      }
+    }, [searchQuery])
+
+    /*
+    ------recolisation--------
+    * press --> i
+    *  render 
+    *  call useeffect 
+    *   api call ==> after 200ms
+    * 
+    * 
+    * press --> ip if before 200ms then api prev api call will be decline else it will also show api call of based on previos letter
+    * render
+    * call useEffect
+    * api call ==> after 200ms
+    * 
+    * every time render is being call so setimeout is new instance everytime created
+    * 
+    */
+
+    const getSearchSuggetion = async ()=>{
+      const data = await fetch(YOUTUBE_SEARCH_API + searchQuery)
+      const json = await data.json();
+      console.log("API CALL ==>" , searchQuery )
+      setSearchSuggestion(json[1])
+    }
 
     const toggleMenuHandler = ()=>{
         dispatch(toogleSidebar()) 
@@ -29,11 +68,16 @@ const Header = () => {
           />
           </a>
       </div>
-      <div className="flex justify-center items-center  text-center col-span-10">
+      <div className="col-span-10">
+        <div className="flex justify-center ">
         <input
-          className="rounded-l-full w-1/2  h-9 border border-slate-900 px-4"
+          className="rounded-l-full w-2/5  h-9 border border-slate-900 px-4"
           placeholder="Search"
           type="text"
+          value = {searchQuery}
+          onChange={(e)=>{setSearchQuery(e.target.value)}}
+          onFocus={()=>{setShowSugessionOnFocus(true)}}
+          onBlur={()=>{setShowSugessionOnFocus(false)}}
         />
         <button className="border  h-9 w-12  border-slate-900 rounded-r-full">
           <img
@@ -42,6 +86,13 @@ const Header = () => {
             alt=""
           />
         </button>
+        </div>
+        {showSugessionOnFocus && (
+        <div className="fixed  top-12 bg-white border rounded-lg right-[31.5rem]  shadow-2xl w-[28rem]  border-gray-500 z-10">
+            <ul className=" h-full w-full ">
+              {searchSuggestion.map(sug=> <li className="px-1 py-1 hover:bg-gray-100" >🔍 {sug}</li> )}
+            </ul>
+        </div>)}
       </div>
       <div className="flex col-span-1 justify-end">
         <img
@@ -55,3 +106,6 @@ const Header = () => {
 };
 
 export default Header;
+
+
+//TODO fix scroll 
