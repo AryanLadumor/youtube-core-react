@@ -40,7 +40,7 @@ const Header = () => {
     return () => {
       clearTimeout(timer);
     };
-  }, [searchQuery]);
+  }, [searchQuery ]);
 
    const getSearchSuggetion = async () => {
       const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
