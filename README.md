@@ -19,3 +19,11 @@ why suggestion? cus it give better user experience
 Debouncing with 200ms --> test flipcart vs youtube ==> YT has very less
     if diff bet 2 keystroke is < 200ms  DEcline API call
     >200 make an api call
+
+cacheing==> we no need for api call when user type again the same searchQuery 
+            so we create cache for it 
+
+so now our search bar is using live API , debouncing and cache   (try to remove after 100 results LRU cache)
+
+
+buidling n level nested coments 
