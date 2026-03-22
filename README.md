@@ -27,3 +27,15 @@ so now our search bar is using live API , debouncing and cache   (try to remove 
 
 
 buidling n level nested coments 
+
+--------
+challenges to make live chat applicatino 
+DL==> get data live
+UIL ==> update the UI
+![alt text](image.png)
+
+gmail ==> api polling 
+trading platform ==> web  socket (as evry ms matter here stock can go up and down in ms)
+whats app ==> web socket as chat order matter the most 
+live chat ==> web socket
+cricbuss ==> web socket

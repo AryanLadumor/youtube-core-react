@@ -11,7 +11,7 @@ const CommentList = ({ commentList }) => {
             <div >
               <Comment  data={comment} />
             </div>
-            <div className="pl-5 border border-l-black ml-5">
+            <div className="pl-5 border border-l-black ml-5 ">
             {/*
                //! Applying recursion  
                //* in the last we have repleis as a comment list so we can use this component as recuesily
