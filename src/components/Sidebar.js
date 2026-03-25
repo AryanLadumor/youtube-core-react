@@ -43,6 +43,13 @@ const Sidebar = () => {
                 </span>
                 <span className="ml-1 w-5/12 text-center">Music</span>
               </li>
+              <li className="flex my-1  w-full ">
+                <Link to="/demo">
+                  <button className="m-2 bg-green-300 rounded-full w-full hover:scale-105 transition duration-75">
+                    Demo
+                  </button>
+                </Link>
+              </li>
             </ul>
           </div>
           <div className="my-3">

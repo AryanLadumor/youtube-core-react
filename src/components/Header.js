@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toogleSidebar } from "../utils/appSlice";
+import { Link } from "react-router";
 import {
   DEFAULT_USER_ICON,
   HAMBURGER_MENU_ICON,
@@ -68,7 +69,7 @@ const Header = () => {
     * every time render is being call so setimeout is new instance everytime created
     * 
     */
-
+    
   const toggleMenuHandler = () => {
     dispatch(toogleSidebar());
   };
@@ -116,13 +117,16 @@ const Header = () => {
           <div className="fixed  top-12 bg-white border rounded-lg right-[31.5rem]  shadow-2xl w-[28rem]  border-gray-500 z-10">
             <ul className=" h-full w-full ">
               {searchSuggestion.map((sug) => (
-                <li className="px-1 py-1 hover:bg-gray-100">🔍 {sug}</li>
+                <li key={sug} className="px-1 py-1 hover:bg-gray-100">🔍 {sug}</li>
               ))}
             </ul>
           </div>
         )}
       </div>
-      <div className="flex col-span-1 justify-end">
+      <div className="flex col-span-1 justify-end items-center">
+        
+       
+        
         <img className="h-8 " src={DEFAULT_USER_ICON} alt="" />
       </div>
     </div>

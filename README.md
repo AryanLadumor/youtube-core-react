@@ -39,3 +39,7 @@ trading platform ==> web  socket (as evry ms matter here stock can go up and dow
 whats app ==> web socket as chat order matter the most 
 live chat ==> web socket
 cricbuss ==> web socket
+
+
+//////////////////////////
+useMemo use for expensive task 
