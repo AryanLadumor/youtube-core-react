@@ -28,14 +28,14 @@ const VideoContainer = () => {
 
   return (
     <div className='grid grid-cols-3 ' >
-      {videos.map((video,index)=>{
+      {videos && videos.map((video,index)=>{
         return (
           <Link key={video.id} to={"/watch?v=" + video.id }>
             <VideoCard info={videos[index]}/>
-          </Link>
+          </Link> 
       )
     })}
-    { videos[0] &&  <BorderedVideoCard info={videos[0]}/>}
+    { videos && videos[0] &&  <BorderedVideoCard info={videos[0]}/>}
     </div>
   )
 }
