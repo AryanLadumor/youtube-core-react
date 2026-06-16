@@ -25,6 +25,12 @@ const Header = () => {
   useEffect(() => {
    
 
+    // 1. Prevent API calls if the user hasn't typed anything yet
+  if (searchQuery.trim() === "") {
+    setSearchSuggestion([]); // Clear suggestions if input is empty
+    return;
+  }
+
     //after every key press make an api call in 200ms
     const timer = setTimeout(() => {
       //Adding cacheing (to avoide repetative calls optimised)
@@ -41,7 +47,7 @@ const Header = () => {
     return () => {
       clearTimeout(timer);
     };
-  }, [searchQuery ]);
+  }, [ searchQuery]);
 
    const getSearchSuggetion = async () => {
       const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
