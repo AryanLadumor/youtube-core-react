@@ -18,13 +18,45 @@ const Header = () => {
   const searchCache = useSelector((store) => store.search);
   const dispatch = useDispatch();
 
-  const getSearchSuggetion = useCallback(async () => {
-    const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
-    const json = await data.json();
-    console.log("API CALL ==>", searchQuery);
-    setSearchSuggestion(json[1]);
 
-    dispatch(cacheResults({ [searchQuery]: json[1] }));
+    // const getSearchSuggetion = useCallback(async () => {
+    // const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
+    // const json = await data.json();
+    // console.log("API CALL ==>", searchQuery);
+    // setSearchSuggestion(json[1]);
+
+    // dispatch(cacheResults({ [searchQuery]: json[1] }));
+
+
+  const getSearchSuggetion = useCallback(() => {
+    if (!searchQuery.trim()) return;
+
+    const callbackName = "jsonp_callback_" + Math.round(100000 * Math.random());
+    const script = document.createElement("script");
+    script.src = `${YOUTUBE_SEARCH_API}${encodeURIComponent(searchQuery)}&callback=${callbackName}`;
+    script.async = true;
+
+    window[callbackName] = (data) => {
+      console.log("JSONP API CALL ==>", searchQuery);
+      const suggestions = data[1] || [];
+      setSearchSuggestion(suggestions);
+      dispatch(cacheResults({ [searchQuery]: suggestions }));
+      
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+      delete window[callbackName];
+    };
+
+    script.onerror = () => {
+      console.error("JSONP script load failed for query:", searchQuery);
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+      delete window[callbackName];
+    };
+
+    document.body.appendChild(script);
   }, [dispatch, searchQuery]);
 
   useEffect(() => {
