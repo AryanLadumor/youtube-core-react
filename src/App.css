@@ -1,3 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Outfit', sans-serif;
+    @apply text-slate-800 antialiased bg-slate-50;
+  }
+}
+
+/* Custom scrollbar utility for Live Chat and search suggestions */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.4);
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.7);
+}
+
+/* Hide scrollbar utility for filter button list */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Spotlight Highlight Pulse Glow animation */
+@keyframes spotlight-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0px rgba(79, 70, 229, 0.7), 0 0 15px rgba(79, 70, 229, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(79, 70, 229, 0.3), 0 0 30px rgba(79, 70, 229, 0.6);
+  }
+}
+
+.spotlight-active {
+  animation: spotlight-glow 1.5s ease-in-out 3;
+  border-color: rgb(79, 70, 229) !important;
+  border-width: 2px !important;
+  transition: all 0.3s ease;
+}

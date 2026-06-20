@@ -5,13 +5,12 @@ import { Outlet } from 'react-router-dom'
 const Body = () => {
 
   return (
-    <div className="flex h-screen ">
+    <div className="flex min-h-[calc(100vh-61px)] overflow-x-hidden bg-slate-50/50">
         <Sidebar  />
-        <Outlet/>
-        {/*
-         <MainContainer/>
-        <WatchPage/> 
-        */}
+        <main className="min-w-0 flex-1">
+          <Outlet/>
+        </main>
+       
     </div>
   )
 }

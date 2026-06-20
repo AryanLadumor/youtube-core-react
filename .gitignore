@@ -22,3 +22,12 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+
+
+/.agents
+/.claude
+/.kilocode
+skills-lock.json
+

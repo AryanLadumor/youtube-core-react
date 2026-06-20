@@ -6,26 +6,30 @@ const VideoCard = ({ info }) => {
   const { title, thumbnails, channelTitle } = snippet;
 
   return (
-    <div className="p-2 m-2   w-auto  h-auto rounded-lg  hover:scale-[1.01] hover:bg-gray-200 hover:shadow-md transition duration-200">
-      <img
-        className="w-full h-full rounded-lg"
-        src={thumbnails?.medium?.url}
-        alt="NoImage"
-      />
-      <p className="p-1 text-sm  text-wrap font-semibold">{title}</p>
-      <p className="text-xs">{channelTitle}</p>
+    <article className="group h-full flex flex-col justify-between rounded-2xl border border-slate-200/60 bg-white p-2.5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
       <div>
-        <span className="text-xs text-slate-600">
-          {statistics.viewCount} views •{" "}
-        </span>
-        <span className="text-xs text-slate-600">
-          {statistics.likeCount} likes •{" "}
-        </span>
-        <span className="text-xs text-slate-600">
-          {new Date(snippet.publishedAt).toLocaleString("en-IN").split(",")[0]}
-        </span>
+        <div className="overflow-hidden rounded-xl bg-slate-100">
+          <img
+            className="aspect-video w-full rounded-xl object-cover group-hover:scale-102 group-hover:brightness-95 transition-all duration-300"
+            src={thumbnails?.medium?.url}
+            alt="NoImage"
+          />
+        </div>
+        <p className="line-clamp-2 mt-2 px-1 text-sm font-semibold leading-5 text-slate-800 group-hover:text-indigo-600 transition-colors">{title}</p>
       </div>
-    </div>
+      <div className="mt-2 px-1">
+        <p className="truncate text-xs font-semibold text-slate-500">{channelTitle}</p>
+        <div className="flex flex-wrap gap-x-1.5 mt-1 text-[11px] font-medium text-slate-400">
+          <span>{statistics.viewCount} views</span>
+          <span>•</span>
+          <span>{statistics.likeCount} likes</span>
+          <span>•</span>
+          <span>
+            {new Date(snippet.publishedAt).toLocaleString("en-IN").split(",")[0]}
+          </span>
+        </div>
+      </div>
+    </article>
   );
 };
 
@@ -33,9 +37,12 @@ const VideoCard = ({ info }) => {
 export const HOCBorderedVideoCard = (VideoCard) => {
   return ({ info }) => {
     return (
-      <div className="p-1 m-1 border border-red-300">
+      <div className="rounded-2xl border border-rose-200 bg-rose-50/10 p-0.5 relative shadow-sm">
+        <div className="absolute top-4 right-4 z-10 rounded bg-rose-500 px-1.5 py-0.5 text-[9px] font-bold text-white uppercase tracking-wider shadow-sm">
+          Ad
+        </div>
         <VideoCard info={info} />
-        <p className=" text-xs text-slate-400">Sponsered By xyz</p>
+        <p className="px-3.5 pb-2 text-[10px] font-bold text-rose-500 uppercase tracking-wider">Sponsored By xyz</p>
       </div>
     );
   };
